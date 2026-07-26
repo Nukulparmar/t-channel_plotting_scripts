@@ -1,0 +1,29 @@
+imax * number of bins 
+jmax * number of processes minus 1 
+kmax * number of nuisance parameters
+-----------------------------------------------------------------------------------
+shapes   data_obs  D_2SVJY2016_Run2    param_ws_2SVJY2016_Run2.root    wspace_abcd_model:data_obs_2SVJY2016_Run2_D
+shapes   Bkg  D_2SVJY2016_Run2    param_ws_2SVJY2016_Run2.root    wspace_abcd_model:bkg_2SVJY2016_Run2_D
+shapes   mMed2000_mDark20_rinv0p3_yukawa1  D_2SVJY2016_Run2    param_ws_2SVJY2016_Run2.root    wspace_signal_model_D:mMed2000_mDark20_rinv0p3_yukawa1_2SVJY2016_Run2_D     wspace_signal_model_D:mMed2000_mDark20_rinv0p3_yukawa1_2SVJY2016_Run2_D_$SYSTEMATIC
+-----------------------------------------------------------------------------------
+bin               D_2SVJY2016_Run2
+observation       -1
+-----------------------------------------------------------------------------------
+bin                                     D_2SVJY2016_Run2                            D_2SVJY2016_Run2                           
+process                                 Bkg                                         mMed2000_mDark20_rinv0p3_yukawa1           
+process                                 1                                           0                                          
+rate                                    1                                           -1                                         
+-----------------------------------------------------------------------------------
+lumi                lnN                 -                   1.0073              
+trigger             lnN                 -                   1.02                
+jer2016              shape               -                   1                   
+jec2016              shape               -                   1                   
+puSys                shape               -                   1                   
+scale                shape               -                   1                   
+pdf                  shape               -                   1                   
+MCStat2SVJY2016_Run2_Region_D_Bin1 shape               -                   1                   
+
+lundWeightSys2016    shape               -                   1                   
+lundWeightStat2016   shape               -                   1                   
+lundWeightPt         shape               -                   1                   
+lundWeightDistortion shape               -                   1                   

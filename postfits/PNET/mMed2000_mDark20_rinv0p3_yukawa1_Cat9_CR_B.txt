@@ -1,0 +1,42 @@
+imax * number of bins 
+jmax * number of processes minus 1 
+kmax * number of nuisance parameters
+-----------------------------------------------------------------------------------
+shapes   data_obs  B_1SVJY2018_Run2    param_ws_1SVJY2018_Run2.root    wspace_abcd_model:data_obs_1SVJY2018_Run2_B
+shapes   Bkg  B_1SVJY2018_Run2    param_ws_1SVJY2018_Run2.root    wspace_abcd_model:bkg_1SVJY2018_Run2_B
+shapes   mMed2000_mDark20_rinv0p3_yukawa1  B_1SVJY2018_Run2    param_ws_1SVJY2018_Run2.root    wspace_signal_model_B:mMed2000_mDark20_rinv0p3_yukawa1_1SVJY2018_Run2_B     wspace_signal_model_B:mMed2000_mDark20_rinv0p3_yukawa1_1SVJY2018_Run2_B_$SYSTEMATIC
+-----------------------------------------------------------------------------------
+bin               B_1SVJY2018_Run2
+observation       -1
+-----------------------------------------------------------------------------------
+bin                                     B_1SVJY2018_Run2                            B_1SVJY2018_Run2                           
+process                                 Bkg                                         mMed2000_mDark20_rinv0p3_yukawa1           
+process                                 1                                           0                                          
+rate                                    1                                           -1                                         
+-----------------------------------------------------------------------------------
+lumi                lnN                 -                   1.0073              
+trigger             lnN                 -                   1.02                
+jer2018              shape               -                   1                   
+jec2018              shape               -                   1                   
+puSys                shape               -                   1                   
+scale                shape               -                   1                   
+pdf                  shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin1 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin2 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin3 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin4 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin5 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin6 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin7 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin8 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin9 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin10 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin11 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin12 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin13 shape               -                   1                   
+MCStat1SVJY2018_Run2_Region_B_Bin14 shape               -                   1                   
+
+lundWeightSys2018    shape               -                   1                   
+lundWeightStat2018   shape               -                   1                   
+lundWeightPt         shape               -                   1                   
+lundWeightDistortion shape               -                   1                   

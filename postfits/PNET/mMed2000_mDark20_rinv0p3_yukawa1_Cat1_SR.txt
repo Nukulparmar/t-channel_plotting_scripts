@@ -1,0 +1,60 @@
+imax * number of bins 
+jmax * number of processes minus 1 
+kmax * number of nuisance parameters
+-----------------------------------------------------------------------------------
+shapes   data_obs  A_1SVJY2016_Run2    param_ws_1SVJY2016_Run2.root    wspace_abcd_model:data_obs_1SVJY2016_Run2_A
+shapes   Bkg  A_1SVJY2016_Run2    param_ws_1SVJY2016_Run2.root    wspace_abcd_model:bkg_1SVJY2016_Run2_A
+shapes   mMed2000_mDark20_rinv0p3_yukawa1  A_1SVJY2016_Run2    param_ws_1SVJY2016_Run2.root    wspace_signal_model_A:mMed2000_mDark20_rinv0p3_yukawa1_1SVJY2016_Run2_A     wspace_signal_model_A:mMed2000_mDark20_rinv0p3_yukawa1_1SVJY2016_Run2_A_$SYSTEMATIC
+-----------------------------------------------------------------------------------
+bin               A_1SVJY2016_Run2
+observation       -1
+-----------------------------------------------------------------------------------
+bin                                     A_1SVJY2016_Run2                             A_1SVJY2016_Run2                           
+process                                 Bkg                                          mMed2000_mDark20_rinv0p3_yukawa1           
+process                                 1                                           0                                          
+rate                                    1                                           -1                                         
+-----------------------------------------------------------------------------------
+lumi                lnN                 -                   1.0073              
+trigger             lnN                 -                   1.02                
+jer2016              shape               -                   1                   
+jec2016              shape               -                   1                   
+puSys                shape               -                   1                   
+scale                shape               -                   1                   
+pdf                  shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin1 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin2 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin3 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin4 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin5 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin6 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin7 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin8 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin9 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin10 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin11 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin12 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin13 shape               -                   1                   
+MCStat1SVJY2016_Run2_Region_A_Bin14 shape               -                   1                   
+
+lundWeightSys2016    shape               -                   1                   
+lundWeightStat2016   shape               -                   1                   
+lundWeightPt         shape               -                   1                   
+lundWeightDistortion shape               -                   1                   
+nonclosure_1SVJY2016_Run2          lnN                 1.223               -                   
+
+
+nuisance_BkgRateSR_1SVJY2016_Run2_bin1       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin2       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin3       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin4       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin5       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin6       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin7       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin8       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin9       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin10       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin11       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin12       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin13       param    0     1
+nuisance_BkgRateSR_1SVJY2016_Run2_bin14       param    0     1
+-----------------------------------------------------------------------------------

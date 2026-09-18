@@ -613,6 +613,7 @@ def plot_2d_color(ax, interp, x_range, y_range, n_entries=200, valid_mask_fn=Non
     if valid_mask_fn is not None:
         z = np.where(valid_mask_fn(x, y), z, np.nan)
     vmin, vmax = get_log_color_range(z, colorbar_range=colorbar_range)
+    vmin, vmax = 10e-2, 10
     im = ax.pcolormesh(
         x, y, z,
         norm=matplotlib.colors.LogNorm(vmin=vmin, vmax=vmax),

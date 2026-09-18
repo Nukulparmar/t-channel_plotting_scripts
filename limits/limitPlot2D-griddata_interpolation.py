@@ -176,7 +176,7 @@ POI_CONFIG = {
     "yukawa": {
         "regex": r"yukawa[_\-]?([0-9]+(?:p[0-9]+)?)",
         "label": r"$\lambda$",
-        "range": (0.5, 3.5),
+        "range": (0.1, 3.5),
     },
 }
 

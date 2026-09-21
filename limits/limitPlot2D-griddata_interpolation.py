@@ -607,13 +607,16 @@ def get_log_color_range(z, colorbar_range=None):
     return vmin, vmax
 
 
-def plot_2d_color(ax, interp, x_range, y_range, n_entries=200, valid_mask_fn=None, colorbar_range=None):
+def plot_2d_color(ax, interp, x_range, y_range, n_entries=200, valid_mask_fn=None, colorbar_range=None, vmin=None, vmax=None):
     x, y = _make_mesh(x_range, y_range, n_entries)
     z = interp(x, y)
     if valid_mask_fn is not None:
         z = np.where(valid_mask_fn(x, y), z, np.nan)
-    vmin, vmax = get_log_color_range(z, colorbar_range=colorbar_range)
-    vmin, vmax = 10e-2, 10
+    if vmin is None or vmax is None:
+        vmin, vmax = get_log_color_range(z, colorbar_range=colorbar_range)
+
+    print(f"Colorbar range: vmin={vmin:.3g}, vmax={vmax:.3g}")
+
     im = ax.pcolormesh(
         x, y, z,
         norm=matplotlib.colors.LogNorm(vmin=vmin, vmax=vmax),
@@ -621,7 +624,9 @@ def plot_2d_color(ax, interp, x_range, y_range, n_entries=200, valid_mask_fn=Non
         edgecolors="None",
     )
     cbar = ax.figure.colorbar(im, ax=ax)
-    cbar.ax.set_ylabel(r"95% CL upper limit on $\sigma_{\Phi}/\sigma_{\Phi_{theory}}$  [pb]", va="top")
+    # cbar.ax.set_ylabel(r"95% CL upper limit on $\sigma_{\Phi}/\sigma_{\Phi_{theory}}$  [pb]", va="top")
+    cbar.ax.set_ylabel(r"95% CL upper limit on $\sigma_{\Phi}$  [pb]", va="top")
+    
     return ax, z
 
 
@@ -735,6 +740,7 @@ def make_2d_limit_plot(
     output_suffix = "",
     tagger = "wnae",
     smooth_contour = False,
+    userdefined_color_range = None
 ):
     if fixed_params is None:
         fixed_params = {}
@@ -749,6 +755,7 @@ def make_2d_limit_plot(
 
     x_range = get_poi_range(poi_x)
     y_range = get_poi_range(poi_y)
+    print(y_range)
 
     valid_mask_fn = None
     if poi_x == "mMed" and poi_y == "mDark":
@@ -770,6 +777,10 @@ def make_2d_limit_plot(
         triangulation=triangulation,
         rectangular_diagonal=rectangular_diagonal,
     )
+    if userdefined_color_range is not None:
+        vmin, vmax = userdefined_color_range
+    else:
+        vmin, vmax = None, None
     ax, z = plot_2d_color(
         ax,
         exp_central_fb,
@@ -778,6 +789,8 @@ def make_2d_limit_plot(
         valid_mask_fn=valid_mask_fn,
         n_entries=200,
         colorbar_range=colorbar_range,
+        vmin=vmin,
+        vmax=vmax
     )
 
 
@@ -1022,6 +1035,7 @@ if __name__ == "__main__":
     parser.add_argument("--tagger", default="wnae", help="Tagger type (default: wnae)")
     parser.add_argument("--output-suffix", default="", help="Suffix for output files (default: empty)")
     parser.add_argument("--smooth", action="store_true", help="Smooth the interpolated limit contours (default: False)")
+    parser.add_argument("--userdefined_color_range", nargs=2, type=float, metavar=("MIN", "MAX"), default=None, help="User-defined log colorbar range; default is inferred from positive finite shaded values")
     
     args = parser.parse_args()
 
@@ -1056,4 +1070,5 @@ if __name__ == "__main__":
         output_suffix=args.output_suffix,
         tagger=args.tagger,
         smooth_contour=args.smooth,
+        userdefined_color_range=args.userdefined_color_range
     )

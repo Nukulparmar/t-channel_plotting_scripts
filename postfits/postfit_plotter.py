@@ -453,30 +453,39 @@ def __read_data_yields(ws_fitdiagnostics_results,inject_signal_in_asimov,param_c
     return data_yields_dict
 
 
-def __combine_histograms_years(histograms_cat_years, what, flavor):
-    histograms_combined = {r: None for r in ["A", "B", "C", "D"]}
-    for region in ["A", "B", "C", "D"]:
-        region_hists = []
-        for year in histograms_cat_years.keys():
-            hist = histograms_cat_years[year][what + "_" + flavor][region]
-            region_hists.append(hist)
-        min_nbins = min(h.GetNbinsX() for h in region_hists)
-        reference_hist = next(h for h in region_hists if h.GetNbinsX() == min_nbins)
-        bin_edges = [reference_hist.GetBinLowEdge(i) for i in range(1, min_nbins + 1)]
-        bin_edges.append(reference_hist.GetBinLowEdge(min_nbins + 1))
-        rebinned_hists = []
-        for hist in region_hists:
-            if hist.GetNbinsX() != min_nbins:
-                hist_rebinned = hist.Rebin(len(bin_edges) - 1, hist.GetName() + "_rebinned", np.array(bin_edges, dtype=float))
-                rebinned_hists.append(hist_rebinned)
-            else:
-                rebinned_hists.append(hist)
-        for hist in rebinned_hists:
-            if histograms_combined[region] is None:
-                histograms_combined[region] = cp.deepcopy(hist)
-            else:
-                histograms_combined[region].Add(hist)
-    return histograms_combined
+ def __combine_histograms_years(histograms_cat_years, what, flavor):
+     histograms_combined = {r: None for r in ["A", "B", "C", "D"]}
+     for region in ["A", "B", "C", "D"]:
+         region_hists = []
+         for year in histograms_cat_years.keys():
+             hist = histograms_cat_years[year][what + "_" + flavor][region]
+             region_hists.append(hist)
+         min_nbins = min(h.GetNbinsX() for h in region_hists)
+         reference_hist = next(h for h in region_hists if h.GetNbinsX() == min_nbins)
+         bin_edges = [reference_hist.GetBinLowEdge(i) for i in range(1, min_nbins + 1)]
+         bin_edges.append(reference_hist.GetBinLowEdge(min_nbins + 1))
+         rebinned_hists = []
+         for hist in region_hists:
+             if hist.GetNbinsX() != min_nbins:
+                 hist_rebinned = hist.Rebin(len(bin_edges) - 1, hist.GetName() + "_rebinned", np.array(bin_edges, dtype=float))
+                 rebinned_hists.append(hist_rebinned)
+             else:
+                 rebinned_hists.append(hist)
+         for hist in rebinned_hists:
+             if histograms_combined[region] is None:
+                 histograms_combined[region] = cp.deepcopy(hist)
+             else:
+                 histograms_combined[region].Add(hist)
++
++        if flavor == "data":
++            for bin_idx in range(1, histograms_combined[region].GetNbinsX() + 1):
++                total = histograms_combined[region].GetBinContent(bin_idx)
++                histograms_combined[region].SetBinError(
++                    bin_idx,
++                    np.sqrt(max(0.0, total))
++                )
++
+     return histograms_combined
 
 
 # def rebin_hist_to_edges(hist, bin_edges):
